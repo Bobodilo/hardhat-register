@@ -13,10 +13,8 @@ developmentChains.includes(network.name)
               register = await ethers.getContract("Register", deployer)
           })
           it("Allows people to set info and get to check it", async () => {
-              const infoResponse = await register.setInfo(myInfo)
-              await infoResponse.wait(1)
-              const finalResponse = await register.getAddressToInfo(deployer)
-              // Check if
-              assert.equal(finalResponse, "Hello world")
+              await register.setInfo(myInfo)
+              const finalResponse = await register.getInformer(0)
+              assert.equal(finalResponse, deployer)
           })
       })

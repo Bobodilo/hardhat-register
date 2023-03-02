@@ -1,6 +1,6 @@
-const { assert, expect } = require("chai")
+const { assert } = require("chai")
 const { network, deployments, ethers, getNamedAccounts } = require("hardhat")
-const { developmentChains, networkConfig } = require("../../helper-hardhat-config")
+const { developmentChains } = require("../../helper-hardhat-config")
 !developmentChains.includes(network.name)
     ? describe.skip
     : describe("Register", function () {
@@ -16,8 +16,8 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
           describe("setInfo", function () {
               it("Sets info", async () => {
                   await register.setInfo(myInfo)
-                  const response = await register.getAddressToInfo(deployer)
-                  assert.equal(response.toString(), myInfo)
+                  const response = await register.getInfo()
+                  assert.equal(response, myInfo)
               })
 
               it("Adds informer to array", async () => {
